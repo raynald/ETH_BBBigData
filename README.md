@@ -1,8 +1,8 @@
 ETH_BBBigData
 =============
-#Useful Information:#
+##Useful Information:##
 
-##Website:##
+###Website:###
 
 **ReadMe**: *http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/readme.txt*
 
@@ -10,5 +10,16 @@ ETH_BBBigData
 
 **Data by year**: *http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/*
 
-##Usage:##
+###Five core elements###
+    PRCP = Precipitation (tenths of mm)
+
+    SNOW = Snowfall (mm)
+
+    SNWD = Snow depth (mm)
+
+    TMAX = Maximum temperature (tenths of degrees C)
+
+    TMIN = Minimum temperature (tenths of degrees C)
+
+###Usage:###
 
