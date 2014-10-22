@@ -36,5 +36,14 @@ integrating the data sources
 
     TMIN = Minimum temperature (tenths of degrees C)
 
+###Installation:###
+Step 1: easy_install Werkzeug
+        easy_install jinja2
+        easy_install itsdangerous
+        easy_install flask
+Step 2: Test on your own computer if "import flask" works.
+
 ###Usage:###
+Run: python google_map.py
+Open your browser, type address: http://127.0.0.1:5000
 
