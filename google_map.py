@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # coding=utf-8
+
 import flask
+import test
+import json
 from flask import Flask
 from flask import render_template, session, request
 
@@ -12,7 +15,20 @@ app.secret_key='this key is very secret indeed'
 
 @app.route('/complexshow')
 def complexshow(name=None):
-    return render_template('complexshow.html', name=name)
+    num, array = test.get_cluster()
+
+    args = {
+            'cluster_num': num,
+            'cluster': json.dumps(array)
+            };
+
+    return render_template('complexshow.html', name=name, **args)
+
+@app.route('/get_clusters')
+def get_clusters():
+    array = test.get_cluster()
+
+    return flask.jsonify( {'clusters': array} )
 
 @app.route('/mapshow')
 def mapshow(name=None):

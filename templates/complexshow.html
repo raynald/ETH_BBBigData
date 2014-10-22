@@ -12,49 +12,51 @@
       }
     </style>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-// The following example creates complex markers to indicate beaches near
-// Sydney, NSW, Australia. Note that the anchor is set to
-// (0,32) to correspond to the base of the flagpole.
+    var clusters = {{cluster|safe}};
+    var cluster_num = {{cluster_num|safe}};
+    </script>
+    <script>
 
 function initialize() {
-  var mapOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(-33.9, 151.2)
-  }
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
-                                mapOptions);
 
-  setMarkers(map, beaches);
+    // use jquery to call get_clusters
+    $.ajax( {
+                url: '/get_clusters',
+                dataType: 'json',
+            } )
+    .done( function(resp) {
+            var mapOptions = {
+            zoom: 10,
+            center: new google.maps.LatLng(47.222014, 8.423129)
+            }
+            var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                        mapOptions);
+            setMarkers(map, resp.clusters);
+
+
+            });
+
 }
-
-/**
- * Data for the markers consisting of a name, a LatLng and a zIndex for
- * the order in which these markers should display on top of each
- * other.
- */
-var beaches = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
-];
 
 function setMarkers(map, locations) {
   for (var i = 0; i < locations.length; i++) {
-    var beach = locations[i];
-    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: beach[0],
-        zIndex: beach[3]
-    });
+      for(var j = 0;j < locations[i].length; j++) {
+          var beach = locations[i][j];
+          var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+          var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: beach[0],
+                zIndex: beach[3],
+                icon: "/static/images/sun_sea_small.png"
+                });
+      }
   }
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+$().ready( initialize );
 
     </script>
   </head>
