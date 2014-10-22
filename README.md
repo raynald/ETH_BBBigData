@@ -1,5 +1,20 @@
 ETH_BBBigData
 =============
+##Goal##
+1. Data Sources and Data Preparation
+    - Original data sources description (source, attributes, features, size)
+    
+    - Identify the main issues experienced during importing, filtering and 
+integrating the data sources
+2. Design of your Solution
+    - Choice of Analysis Tools / Models
+    - Evaluation metrics, how to measure the quality for a solution for your task
+3. Implementation and Results
+    - The system architecture, used storage and analysis tools
+    - Interpretation of Results, and choice of evaluation measure (for the chosen small subset of the real data) 
+    - How much did you reduce the data size in order to make the analysis work?  Do you expect the results to improve if the data size would be increased (hypothetically)?
+    - Scalability / Performance (Time and Memory): Identify the main bottlenecks of your proof-of-concept system if one would increase the data size.
+
 ##Useful Information:##
 
 ###Website:###
