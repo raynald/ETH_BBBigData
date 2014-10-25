@@ -32,7 +32,7 @@ if __name__ == "__main__":
 			continue
 		path = './stations/' + station_id
 		f = open(path, "r")
-		features = [dict() for i in range(15)]
+		features = [dict({'PRCP':0, 'SNOW':0, 'SNWD':0, 'TMAX':0, 'TMIN':0}) for i in range(15)]
 		flag = True
 		curmonth = 0
 		month_counts = {'PRCP':0, 'SNOW':0, 'SNWD':0, 'TMAX':0, 'TMIN':0}
@@ -75,7 +75,8 @@ if __name__ == "__main__":
 					features[curmonth][k] = 0
 			else:
 				features[curmonth][k] = month_sums[k] / month_counts[k]
-		f_out=open("./features/" + station_id+".csv", "a")					
-		for i in range(1,curmonth+1):
-			for j in features[i].keys():
-				f_out.write(str(features[i][j])+",")
+		if curmonth == 12:
+			f_out=open("./features/" + station_id+".csv", "a")					
+			for i in range(1,curmonth+1):
+				for j in features[i].keys():
+					f_out.write(str(features[i][j])+",")
