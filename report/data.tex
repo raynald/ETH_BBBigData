@@ -6,3 +6,58 @@
 	\caption{Visualization of climate pattern clustering with our system.}
 	\label{fig:FullView}
 \end{figure}
+
+\subsection{Introduction}
+GHCN-D is a dataset that contains daily observations over global land areas. 
+Like its monthly counterpart, GHCN-Daily is a composite of climate records from 
+numerous sources that were merged together and subjected to a common suite of quality 
+assurance reviews. The archive includes the following meteorological elements:
+\begin{itemize}
+    \item Daily maximum temperature
+    \item Daily minimum temperature
+    \item Temperature at the time of observation
+    \item Precipitation (i.e., rain, melted snow)
+    \item Snowfall
+    \item Snow depth
+    \item Other elements where available
+\end{itemize}
+
+We use an alternate form of the GHCN Daily dataset. The period of record station files are parsed into  
+yearly files that contain all available GHCN Daily station data for that year 
+plus a time of observation field (where available--primarily for U.S. Cooperative 
+Observers).  The obsertation times for U.S. Cooperative Observer data 
+come from the station histories archived in NCDC's Multinetwork Metadata System (MMS).  
+
+The yearly files are formatted so that every observation 
+(i.e.,station/year/month/day/element/observation time) is represented by a single row 
+with the following fields:
+\begin{itemize}
+	\item  station identifier (GHCN Daily Identification Number)
+ 	\item date (yyyymmdd; where yyyy=year; mm=month; and, dd=day)
+ 	\item observation type (see ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt for definitions)
+ 	\item observation value (see ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt for units)
+ 	\item observation time (if available, as hhmm where hh=hour and mm=minutes in local time)
+ \end{itemize}
+ 
+Sample data:
+
+US1FLSL0019,20090101,PRCP,0,,,N,
+ 
+US1FLSL0019,20090101,SNOW,0,,,N,
+
+ASN00037003,20090101,PRCP,150,,,a,
+
+USC00178998,20090101,TMAX,-111,,,0,1800
+
+USC00178998,20090101,TMIN,-183,,,0,1800
+
+USC00178998,20090101,TOBS,-139,,,0,1800
+
+ \subsection{Data Extraction}
+ 
+ For milestone $2$, we took the year file of 2013, extracted the five key elements, and collected by station identifiers. 
+ 
+
+{\color{red} Menne, M.J., I. Durre, R.S. Vose, B.E. Gleason, and T.G. Houston, 2012:  An overview 
+of the Global Historical Climatology Network-Daily Database.  Journal of Atmospheric 
+and Oceanic Technology, 29, 897-910, doi:10.1175/JTECH-D-11-00103.1.}
