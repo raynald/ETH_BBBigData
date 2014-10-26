@@ -15,10 +15,10 @@ app.secret_key='this key is very secret indeed'
 
 @app.route('/complexshow')
 def complexshow(name=None):
-    num, array = test.get_cluster()
+    array = test.get_cluster()
 
     args = {
-            'cluster_num': num,
+            #'cluster_num': num,
             'cluster': json.dumps(array)
             };
 
