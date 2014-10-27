@@ -1,1 +1,15 @@
 \section{Design of the Solution}
+
+\subsection{Feature Selection}
+As proposed in Section 1.2, we extract five key elements, i.e., Daily Maximum Temperature, Daily Minimum Temperature, Precipitation, Snowfall and Snow Depth, from the data for each station. We group these data by month, compute the mean and variance of each element in each month. Thus, we form 60-dimintional mean-value-based features (5 elements by 12 months), as well as additional 60-dimintional variance-based features for each observation station. After feature selection, we also try to reduce the dimintions of the data and did experiments on the effect of applying PCA on our model.
+
+There are many missing values in our features, as the original data is not complete. We deal with those missing values by using a mean substitution that we substitute the mean value of that element and that month for the missing value. This sustitution is trivial but useful in our small dataset. In the next milestone, we may look into other advanced ways in dealing with missing values.
+
+\subsection{Clustering}
+Having all those features for each station, our next step is to cluster these stations using the k-means clustering method. We group the stations into 75 clusters for North America and 50 clusters for Asia. To improve the outcome of clustering, we tried to use different features, different cluster numbers and whether to reduce dimintions of data or not in our experiment. The result is illustrated in Section 3. 
+
+\subsection{Visualization}
+After the clustering process, given that all stations have its own latitude and longtitude, it is very intuitive to visualize the clustering result in a world map. We use google map API to do the visualization. All the stations are placed on the map according to its location and the stations in the same cluster have the same color. With the visualization, it is easy to see the result of clustering and it gives us more insight about the data.
+
+\subsection{Evaluation}
+Unfortunaltely, there isn't any ground truth for the clustering result that we can refer to and we use a different measure. We verify the result by looking into the visualization and comparing the result with our prior knowledge. We verify whether the points in the same cluster have similar cluster type, and whether there are any climate differences among different clusters. This way of evaluation is ambigious but it is intuitive and effective.
