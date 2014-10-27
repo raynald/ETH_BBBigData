@@ -6,7 +6,12 @@ As proposed in Section 1.2, we extract five key elements, i.e., Daily Maximum Te
 There are many missing values in our features, as the original data is not complete. We deal with those missing values by using a mean substitution that we substitute the mean value of that element and that month for the missing value. This substitution is trivial but useful in our small dataset. In the next milestone, we may look into other advanced ways in dealing with missing values.
 
 \subsection{Clustering}
-Having all those features for each station, our next step is to cluster these stations using the k-means clustering method. We group the stations into 75 clusters for North America and 50 clusters for Asia. To improve the outcome of clustering, we tried to use different features, different cluster numbers and whether to reduce dimensions of data or not in our experiment. The result is illustrated in Section 3. 
+Having all those features for each station, our next step is to cluster these stations using the k-means clustering method. We group the stations into 75 clusters for North America and 50 clusters for Asia. The goal of clustering is to find those k mean vectors $C_1,...,C_K$ and provide the cluster assignment $y_i\in \{1..k\}$ of each point $X_i$ in the set. The optimization criterion is as follows:
+\begin{equation}
+ \min_{y_1,..,y_m, c_1,...,c_k} \sum_{j=1}^{k} \sum_{y_i=j} ||X_i - C_j||^{2}
+\end{equation}
+
+To improve the outcome of clustering, we tried to use different features, different cluster numbers and whether to reduce dimensions of data or not in our experiment. The result is illustrated in Section 3. 
 
 \subsection{Visualization}
 After the clustering process, given that all stations have its own latitude and longitude, it is very intuitive to visualize the clustering result in a world map. We use Google Map API to do the visualization. All the stations are placed on the map according to its location and the stations in the same cluster have the same color. With the visualization, it is easy to see the result of clustering and it gives us more insight about the data.
