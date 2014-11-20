@@ -1,38 +1,55 @@
-#Creating a Connection
-from boto.s3.connection import S3Connection
+class S3:
+    def create_a_connection(self):
+        #Creating a Connection
+        from boto.s3.connection import S3Connection
+        self.conn = S3Connection('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
 
-conn = S3Co('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
+    def create_a_bucket(self, name):
+        #Creating a Bucket
+        bucket = self.conn.create_bucket(name)
 
-#Creating a Bucket
-bucket = conn.create_bucket('mybucket')
+    def store_large_data(self, bucket_name, location):
+        import math, os
+        import boto
+        from filechunkio import FileChunkIO
+        # Connect to S3
+        b = self.conn.get_bucket(bucket_name)
+        # Get file info
+        source_path = location
+        source_size = os.stat(source_path).st_size
 
-#Creating a Bucket In Another Location
-from boto.s3.connection import Location
-print '\n'.join(i for i in dir(Location) if i[0].isupper())
+        # Create a multipart upload request
+        mp = b.initiate_multipart_upload(os.path.basename(source_path))
 
-conn.create_bucket('mybucket', location=Location.EU)
+        # Use a chunk size of 50 MiB (feel free to change this)
+        chunk_size = 52428800
+        chunk_count = int(math.ceil(source_size / chunk_size))
 
-#Storing Data
-from boto.s3.key import Key
-k = Key(bucket)
-k.key = 'foobar'
-k.set_contents_from_string('This is a test of S3')
+        # Send the file parts, using FileChunkIO to create a file-like object
+        # that points to a certain byte range within the original file. We
+        # set bytes to never exceed the original file size.
+        for i in range(chunk_count + 1):
+            offset = chunk_size * i
+            bytes = min(chunk_size, source_size - offset)
+            with FileChunkIO(source_path, 'r', offset=offset, bytes=bytes) as fp:
+                mp.upload_part_from_file(fp, part_num=i + 1)
+        # Finish the upload
+        mp.complete_upload()
 
-#Validate
-import boto
-c = boto.connect_s3()
-b = c.get_bucket('mybucket') # substitute your bucket name here
-from boto.s3.key import Key
-k = Key(b)
-k.key = 'foobar'
-k.get_contents_as_string()
+    def accessing_a_bucket(self, name):
+        mybucket = self.conn.get_bucket(name)
+        for i in mybucket.list():
+            print i
 
+    def deleting_a_bucket(self, name):
+        full_bucket = self.conn.get_bucket(name)
+        # It's full of keys. Delete them all.
+        for key in full_bucket.list():
+            key.delete()
+        self.conn.delete_bucket(name)
 
-#store and retrieve
-k = Key(b)
-k.key = 'myfile'
-k.set_contents_from_filename('foo.jpg')
-k.get_contents_to_filename('bar.jpg')
+    def listing_all_available_buckets(self):
+        rs = self.conn.get_all_buckets()
+        for b in rs:
+            print b.name
 
-#Storing Large Data
-#....
