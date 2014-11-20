@@ -1,36 +1,33 @@
-#Creating a connection
-from boto.emr.connection import EmrConnection
+class EMR:
+    def creating_a_connection(self):
+        #Creating a connection
+        from boto.emr.connection import EmrConnection
+        self.conn = EmrConnection('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
+ 
+    def creating_streaming_job(self):
+        #Creating Streaming JobFlow Steps
+        from boto.emr.step import StreamingStep
+        self.step = StreamingStep(name='my bigdata task',
+            mapper='s3n://eth-src/raw_to_stations.py',
+            #mapper='s3n://elasticmapreduce/samples/wordcount/wordSplitter.py',
+            reducer='s3n://eth-src/stations_to_features.py',
+            #reducer='aggregate',
+            input='s3n://eth-input/2007.csv', 
+            #input='s3n://elasticmapreduce/samples/wordcount/input',
+            output='s3n://eth-middle/')
 
-conn = EmrConnection('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
+    def creating_jobflows(self):
+        #Creating JobFlows
+        #import boto.emr
+        #self.conn = boto.emr.connect_to_region('eu-west-1')
+        job_id = self.conn.run_jobflow(name='My jobflow',
+                log_uri='s3://eth-log/jobflow_logs',
+                steps=[self.step])
 
-#Creating Streaming JobFlow Steps
-from boto.emr.step import StreamingStep
-step = StreamingStep(name='My wordcount example',
-        ...                      mapper='s3n://elasticmapreduce/samples/wordcount/wordSplitter.py',
-        ...                      reducer='aggregate',
-        ...                      input='s3n://elasticmapreduce/samples/wordcount/input',
-        ...                      output='s3n://<my output bucket>/output/wordcount_output')
-#<my output bucket>
+        status = self.conn.describe_jobflow(job_id)
+        status.state
 
-#Creating Custom Jar Job Flow Steps
-from boto.emr.step import JarStep
-step = JarStep(name='Coudburst example',
-        ...                jar='s3n://elasticmapreduce/samples/cloudburst/cloudburst.jar',
-        ...                step_args=['s3n://elasticmapreduce/samples/cloudburst/input/s_suis.br',
-        ...                           's3n://elasticmapreduce/samples/cloudburst/input/100k.br',
-        ...                           's3n://<my output bucket>/output/cloudfront_output',
-        ...                            36, 3, 0, 1, 240, 48, 24, 24, 128, 16])
-
-#Creating JobFlows
-import boto.emr
-conn = boto.emr.connect_to_region('us-west-2')
-jobid = conn.run_jobflow(name='My jobflow',
-        ...                          log_uri='s3://<my log uri>/jobflow_logs',
-        ...                          steps=[step])
-
-status = conn.describe_jobflow(jobid)
-status.state
-
-#Terminating JobFlows
-conn = boto.emr.connect_to_region('us-west-2')
-conn.terminate_jobflow('<jobflow id>')
+    def terminating_jobflows(self, job_id):
+        #Terminating JobFlows
+        #self.conn = boto.emr.connect_to_region('eu-west-1')
+        self.conn.terminate_jobflow(job_id)
