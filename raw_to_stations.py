@@ -16,7 +16,7 @@ def main(argv):
             #day = line[18:20] 
             code = line[21:25]
             num = line[26:].split(',')[0]
-            print "%s\t%s\t%s\t%s\t%s" % (year, station_id, month, code, num)
+            print "%s\t%s\t%s\t%s\t%s" % (station_id, year, month, code, num)
             line = sys.stdin.readline()
     except "end of file":
         return None
