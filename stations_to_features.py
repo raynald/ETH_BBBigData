@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys
 import numpy as np
 
@@ -24,4 +26,5 @@ if __name__ == "__main__":
                 old_year = year
                 old_month = month
                 feature = np.array([int(num)])
-
+    if feature.size > 0:
+        print "%s\t%s\t%s\t%f\t%f" % (old_key, old_year, old_month, feature.mean(), feature.var())
