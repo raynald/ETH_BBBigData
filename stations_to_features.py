@@ -9,6 +9,8 @@ feature += [np.array([])]
 feature += [np.array([])]
 feature += [np.array([])]
 feature += [np.array([])]
+feature_var = np.array([])
+feature_mean = np.array([])
 old_key = ""
 old_year = ""
 old_month = ""
@@ -23,12 +25,16 @@ if __name__ == "__main__":
             else:
                 for i in range(5):
                     if feature[i].size > 0:
-                        print "%s\t%s\t%s\t%f\t%f" % (old_key, old_year, old_month, feature[i].mean(), feature[i].var())
-                        feature[i] = np.array([])
+                        print "%s\t%s\t%s\t%d\t%f\t%f" % (old_key, old_year, old_month, i, feature[i].mean(), feature[i].var())
+                    else
+                        print "%s\t%s\t%s\t%d\t%f\t%f" % (old_key, old_year, old_month, i, feature_mean[i], feature_var[i])                        
+                    feature[i] = np.array([])
                 old_key = key
                 old_year = year
                 old_month = month
                 feature[codeSet[code]] = np.append(feature[codeSet[code]], [int(num)])
     for i in range(5):
-        if feature[i].size > 0:
-            print "%s\t%s\t%s\t%f\t%f" % (old_key, old_year, old_month, feature[i].mean(), feature[i].var())
+         if feature[i].size > 0:
+            print "%s\t%s\t%s\t%d\t%f\t%f" % (old_key, old_year, old_month, i, feature[i].mean(), feature[i].var())
+         else
+            print "%s\t%s\t%s\t%d\t%f\t%f" % (old_key, old_year, old_month, i, feature_mean[i], feature_var[i])        
