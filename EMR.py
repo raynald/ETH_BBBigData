@@ -14,7 +14,7 @@ class EMR:
             #reducer='aggregate',
             input='s3n://eth-input/2007.csv', 
             #input='s3n://elasticmapreduce/samples/wordcount/input',
-            output='s3n://eth-middle/')
+            output='s3n://eth-middle/2007')
 
     def creating_jobflows(self):
         #Creating JobFlows
@@ -22,7 +22,12 @@ class EMR:
         #self.conn = boto.emr.connect_to_region('eu-west-1')
         job_id = self.conn.run_jobflow(name='My jobflow',
                 log_uri='s3://eth-log/jobflow_logs',
-                steps=[self.step])
+                master_instance_type='m3.xlarge',
+                slave_instance_type='m1.large',
+                num_instances=2,
+                steps=[self.step],
+                ami_version='3.3.1'
+                )
 
         status = self.conn.describe_jobflow(job_id)
         status.state
