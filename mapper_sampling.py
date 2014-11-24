@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import numpy as np
 import sys
 import random
@@ -31,8 +32,8 @@ if __name__ == "__main__":
 
     # parameters
     num_pt = data.shape[0]
-    sample_ratio = 0.06
-    retain_ratio = 0.5
+    sample_ratio = 0.01
+    retain_ratio = 0.1
     num_pt_coreset = ceil(num_pt * retain_ratio)
 
     # generate core set with uniform sampling
@@ -58,6 +59,9 @@ if __name__ == "__main__":
         pt_list = list(pt_set)
         for pt in pt_id_sort[0:(num_pt_remove+num_sample)]:
             pt_set.remove(pt_list[pt])
+        # monitoring progress
+        sys.stderr.write(str(num_pt_retained) + " / "\
+            + str(num_pt_coreset) + " sampled\n")
 
     # assign membership
     dist_all = euclidean_distances(data, data[coreset,:])

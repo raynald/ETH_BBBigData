@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import numpy as np
 import sys
 import time
@@ -17,8 +18,8 @@ if __name__ == "__main__":
     weight = np.array(weight, dtype=np.double)
 
     # run weighted kmeans clustering
-    num_cluster = 35
-    num_iter = 200
+    num_cluster = 100
+    num_iter = 500
     # initialize weight kmeans with non-weighted kmeans results
     num_iter_init = 100
 
@@ -40,7 +41,7 @@ if __name__ == "__main__":
     # num_iter = 100
     # weight = np.ones(num_data)
 
-
+    start = time.clock()
     agent = KMeans(num_cluster, init="k-means++",\
                    max_iter=num_iter_init, precompute_distances=True)
     agent.fit(data)
@@ -55,6 +56,9 @@ if __name__ == "__main__":
             data_member = data[member_id, :]
             agent.cluster_centers_[i, :] = \
                 np.sum(weight_member * data_member, axis=0)
+    finish = time.clock()
+    sys.stderr.write(str(data.shape[0]) + " is clustered in " + str(finish -start) + "s\n")
+
     # output the centroid to file
     for i in range(num_cluster):
         centroid = agent.cluster_centers_[i,:]
