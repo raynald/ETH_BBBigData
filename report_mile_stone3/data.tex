@@ -1,0 +1,4 @@
+\section{Data model}
+    In this milestone, we use the full \cite{GHCN-D} dataset, which provides weather information from 1763 to 2014. 
+    We use Amazon Web Services to run our program, \cite{boto} is a Python interface to it. We upload all the data to a bucket in \cite{S3}. Since a single file can exceed $1$GB, we divide the data into chunks of size of $50$M.
+    The 1763 dataset is only $25$KB, so that we have to identify all the missing values, later when creating feature, replacing them with specific ones.
