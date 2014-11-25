@@ -1,5 +1,25 @@
 \section{Result of the Implementation}
 \subsection{Quality Measures and Interpretation}
+\begin{figure}
+    \centering
+    \begin{tabular}{c c}
+        \includegraphics[width =.4\linewidth]{figure/1983.png} &         \includegraphics[width =.4\linewidth]{figure/1993.png} \\
+        1983 & 1993 \\
+        \includegraphics[width =.4\linewidth]{figure/2003.png} &         \includegraphics[width =.4\linewidth]{figure/2013.png} \\
+        2003 & 2013
+    \end{tabular}
+    \caption{Clustering results of different years.}
+    \label{fig:ClusteringFlow}
+\end{figure}
+
+From the clustering flow spanning over 4 decades in Fig \ref{fig:ClusteringFlow}, we are still not satisfied with the current results. In the following, we will discuss a few aspects of the visualization, as well as analysis with possible solutions in the next stage.
+
+From the results, we can see there are only 3 big clusters (Majority of North America, Asia and Russia, Region around Florida) even if we set the number to be 300 for Kmeans. It does not align well with our prior geology knowledge and expected results. There are several possible reasons for this results:
+
+1. We are eliminating data points whose features have relatively large number of missing values. Our threshold might be improper right now. For example, we can observe few points in China while there do exists much more data points in the raw data. It exerts the potential risk of removing possible climate clusters where monitoring data are not complete in all of the five measurements.
+
+2. As we employ uniform sampling to generate coreset, we are still making efforts to analyse 2 specific distributions: . We will adjust our sampling strategy and parameters to improve the result quality before the next milestone. 
+
 \subsection{Scalability}
 For our feature generation tasks, we employ the following EMR master-slave pair for computation. A m3.2xlarge machine with 8 cores and 30GB memory is deployed as the master server, 2 m1.xlarge machines with 4 cores and	15GB memory are employed as slave clients. The running time and peak memory consumption for different feature generation task is summarized in the following table.
 
@@ -24,4 +44,4 @@ For our feature generation tasks, we employ the following EMR master-slave pair 
     \label{tbl:PerfTable}
 \end{table}
 
-As we meet difficulties in installing scikit learn library with bootstrap script when launching clusters. We set up Hadoop environment on a local machine with a quad-core i5 3.2Ghz processor and 16 GB memory. 
+As we meet difficulties in installing scikit learn library with bootstrap script when launching clusters. We set up Hadoop environment on a local machine with a quad-core i5 3.2Ghz processor and 16 GB memory.  {\color{red}(For Lei Gege)}
