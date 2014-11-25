@@ -48,4 +48,30 @@ For our feature generation tasks, we employ the following EMR master-slave pair 
     \label{tbl:PerfTable}
 \end{table}
 
-As we meet difficulties in installing scikit learn library with bootstrap script when launching clusters. We set up Hadoop environment on a local machine with a quad-core i5 3.2Ghz processor and 16 GB memory.  {\color{red}(For Lei Gege)}
+As we meet difficulties in installing scikit learn library with bootstrap script when launching clusters. We set up Hadoop 2.5.2 environment on a local machine with a quad-core i5-4570 3.2Ghz processor and 16 GB memory. To meet the memory requirement for running intensive tasks, we set up the hadoop mapper and reducer memory at \textit{mapred-site.xml } as the following snippet shows.
+
+\begin{lstlisting}
+<configuration>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>localhost:54311</value>
+    </property>
+    <property>
+        <name>mapreduce.map.memory.mb</name>
+        <value>4096</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.memory.mb</name>
+        <value>8192</value>
+    </property>
+    <property>
+        <name>mapreduce.map.java.opts</name>
+        <value>-Xmx3072m</value>
+    </property>
+    <property>
+        <name>mapreduce.reduce.java.opts</name>
+        <value>-Xmx6144m</value>
+    </property>
+</configuration>
+
+\end{lstlisting}

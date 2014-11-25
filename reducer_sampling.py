@@ -16,6 +16,7 @@ if __name__ == "__main__":
     data = np.array(data)
     dim = data.shape[1]
     weight = np.array(weight, dtype=np.double)
+    weight = np.ones(len(weight))#, dtype=np.double)
 
     # run weighted kmeans clustering
     num_cluster = 300

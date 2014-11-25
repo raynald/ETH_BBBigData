@@ -1,5 +1,6 @@
 \documentclass[a4paper]{article}
 
+\usepackage{listings}
 \usepackage{geometry}
 \usepackage{indentfirst}
 \usepackage{amsmath,amssymb}
@@ -15,6 +16,10 @@
 \usepackage{algorithmic}
 %\renewcommand{\algorithmicrequire}{\textbf{Initialization:}}
 %\renewcommand{\algorithmicensure}{\textbf{Inference:}}
+\usepackage{courier}
+
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{framextopmargin=50pt,frame=bottomline}
 
 \geometry{left=3cm,right=3cm,top=3.75cm,bottom=3.75cm}
 \setlength{\parindent}{0em}
@@ -35,7 +40,7 @@
 \date{}
 \maketitle
 
-\abstract{Following our small-data verification in milestone 3, we extend our pipeline to the full dataset containing monitoring from 90000 stations over 300 years. We scale up our kmeans-based clustering algorithm with coreset sampling technique and deploy our pipeline on Amazon EMR service. After more 200 normalized instance hours of running, we observe preliminary results in both positive and negative aspects. Visualization of the current results is demonstrated with detailed analysis on possible reasons for negative observations as well as some feasible updating directions.}
+\abstract{Following our small-data verification in milestone 3, we extend our pipeline to the full dataset containing monitoring from 90000 stations over 300 years. We scale up our kmeans-based clustering algorithm with coreset sampling technique and deploy our pipeline on Amazon EMR\cite{EMR} service. After more 200 normalized instance hours of running, we observe preliminary results in both positive and negative aspects. Visualization of the current results is demonstrated with detailed analysis on possible reasons for negative observations as well as some feasible updating directions.}
 
 \input{data}
 \input{architecture}
@@ -44,9 +49,12 @@
 %\bibliographystyle{plain}
 %\bibliography{Proposal}
 \begin{thebibliography}{1}
+    \bibitem{EMR} http://aws.amazon.com/elasticmapreduce/
     \bibitem{GHCN-D} Peterson, Thomas C., and Russell S. Vose. ``An overview of the Global Historical Climatology Network temperature database.'' Bulletin of the American Meteorological Society 78.12 (1997): 2837-2849.
     \bibitem{boto} https://boto.readthedocs.org/en/latest/
     \bibitem{S3} http://aws.amazon.com/de/s3/
+    \bibitem{sklearn} http://scikit-learn.org/stable/
+    \bibitem{GoogleMap} https://developers.google.com/maps/?hl=de
 \end{thebibliography}
 
 \end{document}
