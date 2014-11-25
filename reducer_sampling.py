@@ -18,8 +18,8 @@ if __name__ == "__main__":
     weight = np.array(weight, dtype=np.double)
 
     # run weighted kmeans clustering
-    num_cluster = 100
-    num_iter = 500
+    num_cluster = 300
+    num_iter = 1000
     # initialize weight kmeans with non-weighted kmeans results
     num_iter_init = 100
 

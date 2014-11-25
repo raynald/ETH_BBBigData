@@ -15,7 +15,7 @@ app.secret_key='this key is very secret indeed'
 
 @app.route('/complexshow')
 def complexshow(name=None):
-    array = test.get_cluster()
+    array = test.get_cluster(2013)
 
     args = {
             #'cluster_num': num,
@@ -26,7 +26,7 @@ def complexshow(name=None):
 
 @app.route('/get_clusters')
 def get_clusters():
-    array = test.get_cluster()
+    array = test.get_cluster(2013)
 
     return flask.jsonify( {'clusters': array} )
 

@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # generate core set with uniform sampling
     pt_set = set(range(num_pt))
     num_pt_retained = 0
-    coreset = [] 
+    coreset = []
     while num_pt_retained < num_pt_coreset:
         # uniformly sample pts to be added to core set
         num_sample = int(min(ceil(num_pt * sample_ratio),\
@@ -48,12 +48,12 @@ if __name__ == "__main__":
         coreset += sample
         num_pt_retained += len(sample)
         # find first half of nearest points and remove
-        # guarantee enough pt for next round    
+        # guarantee enough pt for next round
         num_pt_remove = min( (len(pt_set) - len(sample))\
                             - (num_pt_coreset - num_pt_retained),
-                            ceil( (len(pt_set) - len(sample)) / 2))  
+                            ceil( (len(pt_set) - len(sample)) / 2))
         dist_all = euclidean_distances(data[list(pt_set), :], data[sample, :])
-        dist = np.amin(dist_all, axis=-1)  
+        dist = np.amin(dist_all, axis=-1)
         pt_id_sort = dist.argsort()
         # remove uniformly selected samples and first half of nearest pts
         pt_list = list(pt_set)
@@ -66,9 +66,9 @@ if __name__ == "__main__":
     # assign membership
     # dist_all = euclidean_distances(data, data[list(coreset),:])
     # membership1 = np.argmin(dist_all, axis=-1)
-    
+
     core_list = list(coreset)
-    block_size = 2.0
+    block_size = 1000.0
     membership_list = []
     for i in range(int(ceil(num_pt/block_size))):
         pt_start = i * int(block_size)
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     membership = np.hstack(membership_list)
 
     # assert np.all(membership1 == membership)
-    
+
     member_cnt = []
     for i in range(len(coreset)):
         member_cnt.append((membership == i).sum())
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     #     # assert euclidean_distances(data[i,:], data[coreset[membership[i]], :]) < 2
     #     print membership[i], " memeber ", data[i,:], "\n", data[coreset[membership[i]], :]
     # print member_cnt
-        
+
 
 
 
