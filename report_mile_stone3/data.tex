@@ -1,4 +1,4 @@
-\section{Data model}
+\section{Data description}
     In this milestone, we use the full GHCN-D\cite{GHCN-D} dataset, which provides weather information from 1763 to 2014. 
     We use Amazon Web Services to run our program, boto\cite{boto} is a Python interface to it. We upload all the data to a bucket in S3\cite{S3}. Since a single file can exceed $1$GB, we divide the data into chunks of size of $50$M.
     The 1763 dataset is only $25$KB, so that we have to identify all the missing values, later when creating feature, replacing them with specific ones.
@@ -13,3 +13,6 @@
         \hline 
     \end{tabular}
 \end{table}
+
+\subsection{Data Model}
+All the data separated by years. In each year, there is a table consists of rows and column. Rows are sorted by station id, date, code and number. Since the dataset is extremely big. We use Hadoop MapReduce to do our tasks. We use multiple keys: station id, year, month. Our programming model is Hadoop MapReduce and Hadoop HDFS. We use boto's interface to upload the 300 years data to the S3 system and each intermediate results would all be stored in S3.
