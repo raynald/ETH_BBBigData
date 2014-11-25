@@ -64,8 +64,27 @@ if __name__ == "__main__":
             + str(num_pt_coreset) + " sampled\n")
 
     # assign membership
-    dist_all = euclidean_distances(data, data[coreset,:])
-    membership = np.argmin(dist_all, axis=-1)
+    # dist_all = euclidean_distances(data, data[list(coreset),:])
+    # membership1 = np.argmin(dist_all, axis=-1)
+    
+    core_list = list(coreset)
+    block_size = 2.0
+    membership_list = []
+    for i in range(int(ceil(num_pt/block_size))):
+        pt_start = i * int(block_size)
+        pt_end = (i + 1) * int(block_size)
+        dist_list = []
+        for j in range(int(ceil(num_pt_coreset/block_size))):
+            core_start = j * int(block_size)
+            core_end = (j + 1) * int(block_size)
+            dist_list.append(euclidean_distances(
+                data[pt_start:pt_end, :], data[core_list[core_start:core_end], :]))
+        dist = np.hstack(dist_list)
+        membership_list.append(np.argmin(dist, axis=-1) )
+    membership = np.hstack(membership_list)
+
+    # assert np.all(membership1 == membership)
+    
     member_cnt = []
     for i in range(len(coreset)):
         member_cnt.append((membership == i).sum())
@@ -75,7 +94,7 @@ if __name__ == "__main__":
     assert sum(member_cnt) == num_pt
 
     # output coreset to reducer
-    for i, pt in enumerate(coreset):
+    for i, pt in enumerate(list(coreset)):
         data_str = "%f" % data[pt, 0]
         data_str += "".join([",%f" % value for value in data[pt,1:]])
         print "%s\t%d" % (data_str, member_cnt[i])
