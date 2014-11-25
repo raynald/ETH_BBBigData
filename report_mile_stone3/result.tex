@@ -1,0 +1,27 @@
+\section{Result of the Implementation}
+\subsection{Quality Measures and Interpretation}
+\subsection{Scalability}
+For our feature generation tasks, we employ the following EMR master-slave pair for computation. A m3.2xlarge machine with 8 cores and 30GB memory is deployed as the master server, 2 m1.xlarge machines with 4 cores and	15GB memory are employed as slave clients. The running time and peak memory consumption for different feature generation task is summarized in the following table.
+
+\begin{table}[H]
+    \begin{tabular}{| c | c | c | c |}
+    \hline
+    Task & running time & peak memory & normalized instance hour \\
+    \hline
+    \hline
+    Extract feature with missing value & 3h45min & 25GB & 124h\\
+    \hline
+    Calculate mean and variance of features & 40min & 25GB & 31h\\
+    \hline
+    Fill missing values and normalize features & 3h47min & 25GB & 124h\\
+    %\hline
+%    Recalculating mean and variance for normalization &  &  &\\
+%    \hline
+%    Feature normalization &  &  & \\
+    \hline
+    \end{tabular}
+    \caption{Scalability performance of tasks related to feature generation.}
+    \label{tbl:PerfTable}
+\end{table}
+
+As we meet difficulties in installing scikit learn library with bootstrap script when launching clusters. We set up Hadoop environment on a local machine with a quad-core i5 3.2Ghz processor and 16 GB memory. 
