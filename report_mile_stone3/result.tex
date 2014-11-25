@@ -2,11 +2,13 @@
 \subsection{Quality Measures and Interpretation}
 \begin{figure}
     \centering
-    \begin{tabular}{c c}
-        \includegraphics[width =.4\linewidth]{figure/1983.png} &         \includegraphics[width =.4\linewidth]{figure/1993.png} \\
-        1983 & 1993 \\
-        \includegraphics[width =.4\linewidth]{figure/2003.png} &         \includegraphics[width =.4\linewidth]{figure/2013.png} \\
-        2003 & 2013
+    \begin{tabular}{c}
+        \includegraphics[width =.65\linewidth]{figure/1983.png}\\         1983 \\ 
+        \includegraphics[width =.65\linewidth]{figure/1993.png} \\
+        1993 \\
+        \includegraphics[width =.65\linewidth]{figure/2003.png} \\         2003 \\ 
+        \includegraphics[width =.65\linewidth]{figure/2013.png} \\
+        2013\\
     \end{tabular}
     \caption{Clustering results of different years.}
     \label{fig:ClusteringFlow}
@@ -20,9 +22,9 @@ From the results, we can see there are only 3 big clusters (Majority of North Am
 
 2. As we employ uniform sampling to generate coreset, we are still making efforts to analyse 2 specific distributions: (1) distribution of  numbers of data points represented by each coreset point. (2) distribution of numbers of data points represented by each cluster in coreset. If this distribution is close to uniform distribution, it means points in coreset represent unbalanced neighborhood. Then we can conclude our sampling strategy might be improper. We will adjust our sampling strategy and parameters to improve the result quality before the next milestone.
 
-However, there are also some encouraging points in the current results. From the flow from 1983 to 2013, we can observe the three biggest clusters covering roughly the same areas with minor difference. It is a good indication that similar year-wise climate patterns are clustered into the same cluster. 
+However, there are also some encouraging points in the current results. From the flow from 1983 to 2013, we can observe the three biggest clusters covering roughly the same areas with minor difference. It is a good indication that similar year-wise climate patterns are clustered into the same cluster.
 
-We will make efforts in verifying the correctness of sampling strategy, validity of features and different parameter. We expect better results before the last milestone. 
+We will make efforts in verifying the correctness of sampling strategy, validity of features and different parameter. We expect better results before the last milestone.
 
 \subsection{Scalability}
 For our feature generation tasks, we employ the following EMR master-slave pair for computation. A m3.2xlarge machine with 8 cores and 30GB memory is deployed as the master server, 2 m1.xlarge machines with 4 cores and	15GB memory are employed as slave clients. The running time and peak memory consumption for different feature generation task is summarized in the following table.
