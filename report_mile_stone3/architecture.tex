@@ -1,0 +1,22 @@
+\section{The System Architecture}
+
+\subsection{Description of the Architecture and Tools used}
+As is shown in Figure \ref{fig:archi}, our system has four main steps : Feature Extraction, Sampling, Clustering and Visualization. The tools we used includes Amazon Elastic MapReduce, Scikit-learn library and Google Map API. The four steps are illustrated in details in the followling part.
+\begin{figure}[htbp]
+				\centering
+				\includegraphics[width=0.9\textwidth]{figure/architecture.png}}
+				\caption{Architecture of our system}
+				\label{fig:archi}
+ \end{figure}
+\subsubsection{Feature Extraction}
+The raw data includes the climate data from 1763 to 2014, the total volume of raw data is about 100 Gigabytes, which is too big to fit in the memory. So we used Amazon Elastic MapReduce to calculate features. 
+\subsubsection{Sampling}
+
+\subsubsection{Clustering}
+
+\subsubsection{Visualization}
+For the visualization part, we used the same technique that we have used in milestone 2. We used Google Map API to visualize the clustering result. For each year, all the stations in that year are placed on the map according to its location and the stations in the same cluster have the same color. We did an animation to show the change of clusters which reflects climate change.
+
+\subsection{Behavior and Limits in Scalability}
+We have used most available data 
+\subsection{Possible Improvements}
