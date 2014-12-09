@@ -2,7 +2,7 @@ class S3:
     def create_a_connection(self):
         #Creating a Connection
         from boto.s3.connection import S3Connection
-        self.conn = S3Connection('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
+        self.conn = S3Connection('', '')
 
     def create_a_bucket(self, name):
         #Creating a Bucket

@@ -6,7 +6,7 @@ def get_cluster(yearid):
     for i in range(300): cluster.append([])
     a = []
     for i in range(300): a.append(0)
-    with open("result/by_year_300n3/"+str(yearid)+'.label', "r") as f:
+    with open("result/new/"+str(yearid)+'.label', "r") as f:
         for line in f:
             ausweis = line.split(" ")
             id_ = ausweis[0]
