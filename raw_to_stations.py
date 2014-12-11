@@ -7,13 +7,13 @@ Sample output: SP000008027 20090101    TMAX    146
 """
 
 def main(argv):
-    line = sys.stdin.readline() 
+    line = sys.stdin.readline()
     try:
         while line:
             station_id = line[0:11]
             year = line[12:16]
             month = line[16:18]
-            #day = line[18:20] 
+            #day = line[18:20]
             code = line[21:25]
             num = line[26:].split(',')[0]
             print "%s\t%s\t%s\t%s\t%s" % (station_id, year, month, code, num)

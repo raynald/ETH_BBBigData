@@ -14,13 +14,15 @@ if __name__ == "__main__":
         data.append(np.fromstring(feature, dtype=np.double, sep=','))
         weight.append(int(member_cnt))
     data = np.array(data)
+    print data.shape
     dim = data.shape[1]
     weight = np.array(weight, dtype=np.double)
     weight = np.ones(len(weight))#, dtype=np.double)
 
     # run weighted kmeans clustering
-    num_cluster = 300
-    num_iter = 1000
+    num_cluster = 75
+    #num_cluster = 300
+    num_iter = 300
     # initialize weight kmeans with non-weighted kmeans results
     num_iter_init = 100
 

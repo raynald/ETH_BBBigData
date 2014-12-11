@@ -2,8 +2,8 @@ class EMR:
     def creating_a_connection(self):
         #Creating a connection
         from boto.emr.connection import EmrConnection
-        self.conn = EmrConnection('AKIAJC7QFLHW4EDEZK3Q', 'qG2Inu2MIon3ck7n/PII/e9feD1ZI9kDzz95WBFa')
- 
+        self.conn = EmrConnection('', '')
+
     def creating_streaming_job(self):
         #Creating Streaming JobFlow Steps
         from boto.emr.step import StreamingStep
@@ -12,7 +12,7 @@ class EMR:
             #mapper='s3n://elasticmapreduce/samples/wordcount/wordSplitter.py',
             reducer='s3n://eth-src/stations_to_features.py',
             #reducer='aggregate',
-            input='s3n://eth-input/2007.csv', 
+            input='s3n://eth-input/2007.csv',
             #input='s3n://elasticmapreduce/samples/wordcount/input',
             output='s3n://eth-middle/2007')
 

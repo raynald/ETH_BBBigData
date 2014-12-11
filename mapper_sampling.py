@@ -13,6 +13,8 @@ if __name__ == "__main__":
     for line in sys.stdin:
     # line  = "s1\t1990\t1,3,4,5,6,76,8"
         station, year, feature = line.split("\t")
+        if int(year)!=2013:# or int(year)!=2003 or int(year)!=1993 or int(year)!=1983:
+            continue
         info_list.append((station, year))
         data.append(np.fromstring(feature, dtype=np.double, sep=','))
     data = np.array(data)
@@ -32,8 +34,10 @@ if __name__ == "__main__":
 
     # parameters
     num_pt = data.shape[0]
-    sample_ratio = 0.01
-    retain_ratio = 0.1
+    #sample_ratio = 0.5
+    sample_ratio = 1
+    #retain_ratio = 0.5
+    retain_ratio = 1
     num_pt_coreset = ceil(num_pt * retain_ratio)
 
     # generate core set with uniform sampling
@@ -106,12 +110,4 @@ if __name__ == "__main__":
     #     # assert euclidean_distances(data[i,:], data[coreset[membership[i]], :]) < 2
     #     print membership[i], " memeber ", data[i,:], "\n", data[coreset[membership[i]], :]
     # print member_cnt
-
-
-
-
-
-
-
-
 
