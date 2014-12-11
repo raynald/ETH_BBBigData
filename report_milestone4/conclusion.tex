@@ -1,6 +1,6 @@
 \section{Conclusion}
 
-Althgouh the result of our project is quite subjective, there is an optimal number of clusters. After enough iterations, the result remains a good quality. For the ones with less number of clusters, it would take less time to compute while for bigger number of clusters, it would take more time. Because from \cite{sklearn}'s website, there is a note as following
+Althgouh the result of our project is quite subjective, there is an optimal number of clusters. After enough iterations, the result remains a good quality. For the ones with less number of clusters, it would take less time to compute while for bigger number of clusters, it would take more time. From \cite{sklearn}'s website, there is a note as following
 \begin{quote}
 The k-means problem is solved using Lloyd’s algorithm.
 
@@ -14,8 +14,21 @@ In practice, the k-means algorithm is very fast (one of the fastest clustering a
 From Section {\color{red}Introduction}, we can see that the size of data varies a lot. The more data we use, the more time it would take to run. 
 
 \subsection{Difficulties}
+\begin{itemize}
+    \item The size of Dataset is too big to fit in the memory.
+    \item Too inefficient to run K-means on the whole dataset
+    \item Install Python tools in the remote machine
+\end{itemize}
 
 \subsection{Lecture Learned}
+\begin{itemize}
+    \item Debug thoroughly before implementing it in a distributed system
+    \item Saved the log whenever necessary
+\end{itemize}
 
 \section{Future Work}
+\begin{itemize}
+    \item Create more features and do feature selection
+    \item Other clustering algorithm, maybe GMM 
+\end{itemize}
 
