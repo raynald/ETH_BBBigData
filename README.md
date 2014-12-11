@@ -45,5 +45,10 @@ ETH_BBBigData
   - An Introduction to boto's Elastic Mapreduce Interface [boto1]
   - An Introduction to boto's S3 interface [boto2]
 
+
+###Demo Video###
+[youtube]
+
+[youtube]: https://www.youtube.com/watch?v=xQfEk978IE4&list=UUkzQg0KkXhibidSnmizd4Vg&index=2
 [boto1]: https://boto.readthedocs.org/en/latest/emr_tut.html
 [boto2]: https://boto.readthedocs.org/en/latest/s3_tut.html
