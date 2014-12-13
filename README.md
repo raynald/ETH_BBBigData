@@ -1,8 +1,6 @@
-ETH_BBBigData
-=============
-##Useful Information:##
-
-###Website:###
+##General Information:##
+**Course**: *http://www.da.inf.ethz.ch/lectures/bigdata/index.html*
+###Website of Original Dataset:###
 
 **ReadMe**: *http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/readme.txt*
 

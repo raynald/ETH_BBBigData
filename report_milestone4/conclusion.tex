@@ -10,10 +10,12 @@ The worst case complexity is given by $O(n^{(k+2/p)})$ with n = n\_samples, p = 
 
 In practice, the k-means algorithm is very fast (one of the fastest clustering algorithms available), but it falls in local minima. That’s why it can be useful to restart it several times.
 \end{quote}
+Where in our experiment, we choose $150$ clusters and $500$ iterations.
 
-From Section {\color{red}Introduction}, we can see that the size of data varies a lot. The more data we use, the more time it would take to run. 
+From Section $1$, we can see that the size of data varies a lot. The more data we use, the more time it would take to run. 
 
 \subsection{Difficulties}
+We encountered several difficulties during the projects. The top major ones is following:
 \begin{itemize}
     \item The size of Dataset is too big to fit in the memory.
     \item Too inefficient to run K-means on the whole dataset
@@ -21,12 +23,14 @@ From Section {\color{red}Introduction}, we can see that the size of data varies 
 \end{itemize}
 
 \subsection{Lecture Learned}
+From this project, we learned quite a lot lessons, which could be improved when we do future big data project:
 \begin{itemize}
     \item Debug thoroughly before implementing it in a distributed system
     \item Saved the log whenever necessary
 \end{itemize}
 
 \section{Future Work}
+In future, we have directions to go to improve our system: one is related with feature, the other is about the clustering algorithm:
 \begin{itemize}
     \item Create more features and do feature selection
     \item Other clustering algorithm, maybe GMM 
