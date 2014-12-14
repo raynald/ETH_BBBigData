@@ -15,6 +15,12 @@ The raw data includes the climate data from 1763 to 2014, the total volume of ra
 \subsubsection{Sampling}
 We want to use all data points to run clustering. However, we use the k-means function in the scikit-learn library to compute clusters. It is impossible for that k-means function to run on 300 million of data points. We have two choices of handling this. One is to write a parallel k-means function that can run on Amazon EMR, the other one is to sample these data points so that the sample points are able to represent all the data points with the minimum loss of information. We choose the second approach and use coreset for k-means clustering. The coreset is a set of data points that is used to run the weighted k-means clustering. Each point in the coreset represents some original data points that are near to it. These data points are assigned the same label as the point in the coreset. The coreset sampling is done by an iterative step, where in each step, we uniformly sample some data points, calculate distance to the nearest point in the sampling set for every data point, remove data points whose distance to the nearest point in the sampling set are below median. Iterate this step until the number of remained data points is smaller than a pre-defined number and we get a coreset sampling of data.
 
+todo 
+
+\textbf{TO\_DO:}
+In addition to coreset sampling, we could also run on the whole feature, 
+
+
 \subsubsection{Clustering}
 Having the coreset whose size is reasonable, we can run weighted k-means algorithm on the coreset and calculated all the centroids. The last step is to assign each data point to the nearest centroid and give that data a label. This step is also done by a map-reduce task.
 
