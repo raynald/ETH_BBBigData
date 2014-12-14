@@ -39,6 +39,66 @@
 \abstract{We did more experiment with different parameters during the Milestone 4. We optimized the code and visualized the results as a video on youtube\cite{youtube}. In this final report, we will summarize over the whole three-month project, demonstrate the results and point out some future work}
 
 \input{introduction}
+\input{architecture}
+\input{results}
+\input{conclusion}
+
+%\bibliographystyle{plain}
+%\bibliography{Proposal}
+\begin{thebibliography}{1}
+    \bibitem{EMR} http://aws.amazon.com/elasticmapreduce/
+    \bibitem{GHCN-D} Peterson, Thomas C., and Russell S. Vose. ``An overview of the Global Historical Climatology Network temperature database.'' Bulletin of the American Meteorological Society 78.12 (1997): 2837-2849.
+    \bibitem{boto} https://boto.readthedocs.org/en/latest/
+    \bibitem{S3} http://aws.amazon.com/de/s3/
+    \bibitem{sklearn} http://scikit-learn.org/stable/
+    \bibitem{GoogleMap} https://developers.google.com/maps/?hl=de
+    \bibitem{youtube} https://www.youtube.com/watch?v=xQfEk978IE4\&list=UUkzQg0KkXhibidSnmizd4Vg\&index=2
+    \bibitem{world} http://www.ngdc.noaa.gov/mgg/image/color\_etopo1\_ice\_low.jpg
+\end{thebibliography}
+
+\end{document}
+=======
+\documentclass[a4paper]{article}
+
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{verbatim}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{color}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\renewcommand{\algorithmicrequire}{\textbf{Initialization:}}
+%\renewcommand{\algorithmicensure}{\textbf{Inference:}}
+
+\geometry{left=3cm,right=3cm,top=3.75cm,bottom=3.75cm}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+
+\begin{document}
+
+\newtheorem{thm}{Theorem}
+\newtheorem*{thm*}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{cla}{Claim}
+\newtheorem{prop}{Proposition}
+
+\title{Final report}
+
+\author{Lei Zhong, Hantian Zhang, Jian Zhang}
+\date{}
+\maketitle
+
+\abstract{We did more experiment with different parameters during the Milestone 4, optimized the code and visualized the results as a video on youtube\cite{youtube}. In this final report, we will summarize over the whole three-month project, demonstrate the results and point out some future work.}
+
+\input{introduction}
 \input{contribution}
 \input{results}
 \input{conclusion}
