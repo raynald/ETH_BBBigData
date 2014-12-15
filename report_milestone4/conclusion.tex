@@ -1,5 +1,7 @@
 \section{Conclusion}
 
+We came up with the idea to design CLUE when we talked about warm winter in Zurich. Why not design a system to visualize climate change on the global scale?  
+
 Althgouh the result of our project is quite subjective, there is an optimal number of clusters. After enough iterations, the result remains a good quality. For the ones with less number of clusters, it would take less time to compute while for bigger number of clusters, it would take more time. From \cite{sklearn}'s website, there is a note for the complexity of algorithm:
 \begin{quote}
 The k-means problem is solved using Lloyd’s algorithm.
@@ -13,7 +15,7 @@ In practice, the k-means algorithm is very fast (one of the fastest clustering a
 Where in our experiment, we choose $150$ clusters and $500$ iterations. The solution quality would improve if we use more `useful' data. We throw away the station which have huge number of missing values. The more `useful' data we use, the more computational effort would take. So that's the trade-off.
 
 \subsection{Difficulties}
-We encountered several difficulties during the projects. The top major ones is following:
+It is really hard to design such a system like CLUE. We encountered several difficulties during the projects. The top major ones are listed below:
 \begin{itemize}
     \item The size of Dataset is too big to fit in the memory;
     \item Too in-efficient to run K-means on the whole dataset;
@@ -25,10 +27,11 @@ From this project, we learned quite a lot lessons, which could be improved when 
 \begin{itemize}
     \item Debug thoroughly before implementing it in a distributed system;
     \item Save the log whenever necessary.
+    \item Do as early as we can in order to leave enough time for testing
 \end{itemize}
 
 \section{Future Work}
-In future, we have two directions to go to improve our system: one is related with features, the other is about the clustering algorithm:
+In future, we have two directions to go to improve CLUE's performance: one is related with features, the other is about the clustering algorithm:
 \begin{itemize}
     \item Create more features and do feature selection;
     \item Other clustering algorithms, maybe GMM.
